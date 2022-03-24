@@ -48,7 +48,18 @@ function index (req, res) {
   })
 }
 
+function show(req, res) {
+  Business.findById(req.params.id)
+  .populate ('owner')  
+  .then((profile) => res.json(profile))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+}
+
 export {
   create,
-  index
+  index,
+  show,
 }
