@@ -37,6 +37,12 @@ function create(req, res) {
   }
 }
 
+function deleteBusiness(req, res) {
+  Business.findByIdAndDelete(req.params.id)
+  .then(business => res.json(business))
+  .catch(err => res.json(err))
+}
+
 function index (req, res) {
   Business.find({})
   .populate('owner')
