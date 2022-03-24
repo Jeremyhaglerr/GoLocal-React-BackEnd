@@ -38,12 +38,11 @@ function create(req, res) {
   }
 }
 
-function deleteBusiness(req, res) {
+function deleteBusiness as delete(req, res) {
   Business.findByIdAndDelete(req.params.id)
   .then(business => res.json(business))
   .catch(err => res.json(err))
 }
-
 
 function index (req, res) {
   Business.find({})
@@ -55,6 +54,15 @@ function index (req, res) {
     res.json(err)
   })
 }
+
+function show(req, res) {
+  Business.findById(req.params.id)
+  .populate ('owner')  
+  .then((profile) => res.json(profile))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 
 function update (req, res) {
   if (req.body.photo === 'undefined' || !req.files['photo']) {
@@ -92,8 +100,9 @@ function update (req, res) {
 }
 
 export {
-  update
+  update,
   create,
   index,
+  show,
   deleteBusiness as delete
 }
