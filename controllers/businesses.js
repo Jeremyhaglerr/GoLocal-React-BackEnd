@@ -38,7 +38,7 @@ function create(req, res) {
   }
 }
 
-function deleteBusiness as delete(req, res) {
+function deleteBusiness(req, res) {
   Business.findByIdAndDelete(req.params.id)
   .then(business => res.json(business))
   .catch(err => res.json(err))
@@ -63,7 +63,8 @@ function show(req, res) {
       console.log(err);
       res.status(500).json(err);
     });
-
+  }
+  
 function update (req, res) {
   if (req.body.photo === 'undefined' || !req.files['photo']) {
     delete req.body['photo']
