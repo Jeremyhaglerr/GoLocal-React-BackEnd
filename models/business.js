@@ -16,7 +16,7 @@ const reviewSchema = new Schema({
         required: true
     },
 
-    owner: 
+    author: 
         {type: mongoose.Schema.Types.ObjectId, ref: "Profile"},
     
     })
