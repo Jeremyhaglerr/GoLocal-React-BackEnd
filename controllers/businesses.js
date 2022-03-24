@@ -1,4 +1,5 @@
 import { Business } from '../models/business.js'
+import {v2 as cloudinary} from 'cloudinary'
 
 function create(req, res) {
   console.log(req.body)
@@ -49,5 +50,5 @@ function index (req, res) {
 
 export {
   create,
-   index
+  index
 }
