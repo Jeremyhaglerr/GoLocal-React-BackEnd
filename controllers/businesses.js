@@ -56,5 +56,6 @@ function index (req, res) {
 
 export {
   create,
-  index
+  index,
+  deleteBusiness as delete
 }
