@@ -100,10 +100,37 @@ function update (req, res) {
   }
 }
 
+function addReview(req, res) {
+  Business.findById(req.params.id, function(err, business) {
+    business.reviews.push(req.body) 
+          business.save()
+          .then(business => 
+            res.status(200).json(business))
+        
+          .catch(err => 
+            res.status(500).json(err))
+    })
+  }
+
+function deleteReview(req, res) {
+  Business.findById(req.params.id)
+  .then(business => {
+    business.reviews.remove(req.params.reviewId)
+      business.save()
+      .then(business => 
+        res.status(200).json(business))
+    
+      .catch(err => 
+        res.status(500).json(err))
+      })
+  }
+
 export {
   update,
   create,
   index,
   show,
-  deleteBusiness as delete
+  deleteBusiness as delete,
+  addReview, 
+  deleteReview
 }
