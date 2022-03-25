@@ -6,10 +6,10 @@ const router = Router()
 /*---------- Public Routes ----------*/
 router.get('/', businessCtrl.index)
 router.get('/:id', businessCtrl.show)
-router.post('/', businessCtrl.create)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
+router.post('/', businessCtrl.create)
 router.put('/:id', checkAuth, businessCtrl.update)
 router.delete('/:id', checkAuth, businessCtrl.delete)
 
