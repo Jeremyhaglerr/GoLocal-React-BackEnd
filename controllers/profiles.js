@@ -11,6 +11,7 @@ function index(req, res) {
 
 function show(req, res) {
   Profile.findById(req.params.id)
+  .populate('lists.businesses')
     .then((profile) => res.json(profile))
     .catch((err) => {
       console.log(err);
@@ -48,7 +49,7 @@ function deleteList(req, res) {
     .then(profile => {
       profile.lists.forEach(list => {
         if (list._id == req.body.id) {
-          list.businesses.push(req.body.business)
+          list.businesses.push(req.body)
         }
       })
       profile.save()
