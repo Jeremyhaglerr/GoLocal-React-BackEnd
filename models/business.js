@@ -40,7 +40,7 @@ const businessSchema = new Schema ({
     hours: {
         type: Array
     },
-    image: {
+    photo: {
         type: String
     },
     owner: { 
