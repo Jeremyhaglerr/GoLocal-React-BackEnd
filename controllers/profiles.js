@@ -45,11 +45,12 @@ function deleteList(req, res) {
   }
 
   function addToList(req, res) {
+    console.log(req.body);
     Profile.findById(req.params.id)
     .then(profile => {
       profile.lists.forEach(list => {
         if (list._id == req.body.id) {
-          list.businesses.push(req.body)
+          list.businesses.push(req.body.business)
         }
       })
       profile.save()
