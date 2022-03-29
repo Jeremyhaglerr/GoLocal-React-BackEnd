@@ -43,4 +43,21 @@ function deleteList(req, res) {
       })
   }
 
-export { index, show, addList, deleteList };
+  function addToList(req, res) {
+    Profile.findById(req.params.id)
+    .then(profile => {
+      profile.lists.forEach(list => {
+        if (list._id == req.body.id) {
+          list.businesses.push(req.body.business)
+        }
+      })
+      profile.save()
+      .then(profile => 
+        res.status(200).json(profile))
+    
+      .catch(err => 
+        res.status(500).json(err))
+    })
+  }
+
+export { index, show, addList, deleteList, addToList };
