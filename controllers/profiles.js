@@ -32,6 +32,7 @@ function addList(req, res) {
 }
 
 function deleteList(req, res) {
+  console.log('Delete List',req.params);
   Profile.findById(req.params.id)
   .then(profile => {
     profile.lists.remove(req.params.listId)
@@ -62,4 +63,23 @@ function deleteList(req, res) {
     })
   }
 
-export { index, show, addList, deleteList, addToList };
+  function removeFromList(req, res) {
+    console.log("req.body",req.body);
+    Profile.findById(req.params.id)
+    .then(profile => {
+      profile.lists.forEach(list => {
+        if (list._id == req.body.list._id) {
+          console.log(list.businesses);
+          list.businesses = list.businesses.filter(business => business._id === req.body.business._id)
+        }
+      })
+      profile.save()
+      .then(profile => 
+        res.status(200).json(profile))
+    
+      .catch(err => 
+        res.status(500).json(err))
+    })
+  }
+
+export { index, show, addList, deleteList, addToList, removeFromList };

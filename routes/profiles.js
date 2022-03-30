@@ -14,5 +14,7 @@ router.get('/:id', checkAuth, profilesCtrl.show)
 router.post('/:id', checkAuth, profilesCtrl.addList)
 router.delete('/:id/:listId', checkAuth, profilesCtrl.deleteList)
 router.put('/:id', checkAuth, profilesCtrl.addToList)
+router.put('/:id/remove', checkAuth, profilesCtrl.removeFromList)
+
 
 export { router }
