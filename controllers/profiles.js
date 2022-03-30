@@ -32,10 +32,10 @@ function addList(req, res) {
 }
 
 function deleteList(req, res) {
-  console.log(req.body);
+  console.log('Delete List',req.params);
   Profile.findById(req.params.id)
   .then(profile => {
-    profile.lists.remove(req.body.list)
+    profile.lists.remove(req.params.listId)
       profile.save()
       .then(profile => 
         res.status(200).json(profile))
@@ -68,9 +68,9 @@ function deleteList(req, res) {
     Profile.findById(req.params.id)
     .then(profile => {
       profile.lists.forEach(list => {
-        if (list._id == req.body.id) {
+        if (list._id == req.body.list._id) {
           console.log(list.businesses);
-          // list.businesses = list.businesses.filter(business => business._id === req.body.business)
+          list.businesses = list.businesses.filter(business => business._id === req.body.business._id)
         }
       })
       profile.save()
