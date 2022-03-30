@@ -32,9 +32,10 @@ function addList(req, res) {
 }
 
 function deleteList(req, res) {
+  console.log(req.body);
   Profile.findById(req.params.id)
   .then(profile => {
-    profile.lists.remove(req.params.listId)
+    profile.lists.remove(req.body.list)
       profile.save()
       .then(profile => 
         res.status(200).json(profile))
