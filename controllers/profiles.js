@@ -52,7 +52,7 @@ function deleteList(req, res) {
     .then(profile => {
       profile.lists.forEach(list => {
         if (list._id == req.body.id) {
-          list.businesses.push(req.body.business)
+          list.businesses.indexOf(req.body.business) === -1 ? list.businesses.push(req.body.business) : console.log("This item already exists");
         }
       })
       profile.save()

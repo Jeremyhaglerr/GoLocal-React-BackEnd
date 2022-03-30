@@ -3,7 +3,7 @@ import express from 'express'
 import logger from 'morgan'
 import cors from 'cors'
 import formData from 'express-form-data'
-import bodyParser from 'body-parser'
+import bodyparser from "body-parser"
 
 
 import { router as profilesRouter } from './routes/profiles.js'
