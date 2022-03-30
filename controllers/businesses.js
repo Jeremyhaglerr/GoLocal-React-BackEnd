@@ -113,6 +113,7 @@ function addReview(req, res) {
   }
 
 function deleteReview(req, res) {
+  console.log(req.params)
   Business.findById(req.params.id)
   .then(business => {
     business.reviews.remove(req.params.reviewId)
@@ -124,6 +125,7 @@ function deleteReview(req, res) {
         res.status(500).json(err))
       })
   }
+
 
 export {
   update,
