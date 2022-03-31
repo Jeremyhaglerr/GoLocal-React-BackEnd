@@ -65,13 +65,13 @@ function deleteList(req, res) {
   }
 
   function removeFromList(req, res) {
-    console.log("req.body",req.body);
     Profile.findById(req.params.id)
     .then(profile => {
       profile.lists.forEach(list => {
         if (list._id == req.body.list._id) {
           console.log(list.businesses);
-          list.businesses = list.businesses.filter(business => business._id === req.body.business._id)
+          console.log(req.body.business._id);
+          list.businesses = list.businesses.remove(req.body.business._id)
         }
       })
       profile.save()
